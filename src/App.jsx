@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CompletedTaskList from "./component/CompletedTaskList";
 import Footer from "./component/Footer";
 import TaskList from "./component/TaskList";
 import TaskForm from "./component/TaskForm";
-                         
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [sortType, setSortType] = useState("date"); // priority
@@ -13,6 +13,17 @@ function App() {
     tasks: true,
     completedTasks: true,
   });
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function toggleSection(section) {
     setOpenSection((prev) => ({
@@ -60,7 +71,7 @@ function App() {
   }
 
   const activeTasks = sortTask(tasks.filter((task) => !task.completed));
-  const completedTasks = tasks.filter((task) => task.completed);
+  const completedTasks = sortTask(tasks.filter((task) => task.completed));
 
   return (
     <div className="app">
