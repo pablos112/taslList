@@ -9,7 +9,7 @@ function App() {
   const [sortType, setSortType] = useState("date"); // priority
   const [sortOrder, setSortOrder] = useState("asc"); // desc
   const [openSection, setOpenSection] = useState({
-    taskList: false,
+    taskList: true,
     tasks: true,
     completedTasks: true,
   });
