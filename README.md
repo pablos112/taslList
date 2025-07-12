@@ -10,7 +10,8 @@ You can add tasks, delete them, and filter by status (all / done / not done).
 - Delete tasks
 - Filter tasks (All / Completed / Not Completed)
 - Responsive and clean layout using standard CSS
-
+- Saves tasks using localStorage (persistent across sessions)
+  
 ## 🛠️ Tech Stack
 
 - React
